@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+ xmlns:context="http://www.springframework.org/schema/context" 
+ xsi:schemaLocation="http://www.springframework.org/schema/beans 
+ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+ http://www.springframework.org/schema/context 
+ http://www.springframework.org/schema/context/spring-context-3.0.xsd
+ ">
+ 
+     <!-- 引入属性文件,config.properties位于src/main/resources目录下 -->
+     <context:property-placeholder location="classpath:config.properties" />
+<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+
+<!--  
+<bean name="customerDao" class="com.hand.dao.impl.CustomerDaoImpl">
+<property name="sessionFactory" ref="sessionFactory"/>
+</bean>
+
+<bean name="addressDao" class="com.hand.dao.impl.AddressDaoImpl">
+	<property name="sessionFactory" ref="sessionFactory"/>
+</bean>
+
+<bean name="pageDao" class="com.hand.dao.impl.PageDaoImpl">
+<property name="sessionFactory" ref="sessionFactory"/>
+</bean>
+-->
+<bean name="userDao" class="com.hand.dao.impl.UserDaoImpl">
+<property name="sessionFactory" ref="sessionFactory"/>
+</bean>
+
+<bean name="normaldiscountDao" class="com.hand.dao.impl.NormalDiscountDaoImpl">
+<property name="sessionFactory" ref="sessionFactory"/>
+
+</bean>
+
+<bean name="specialdiscountDao" class="com.hand.dao.impl.SpecialDiscountDaoImpl">
+<property name="sessionFactory" ref="sessionFactory"/>
+
+</bean>
+
+
+<bean name="priceListDao" class="com.hand.dao.impl.PriceListDaoImpl">
+<property name="sessionFactory" ref="sessionFactory"/>
+</bean>
+
+
+
+		<!-- 开启用注解方式注入bean -->
+		<context:annotation-config />
+    	<!-- 自动扫描dao(自动注入) -->
+     	<context:component-scan base-package="com.hand" />
+ 
+</beans>
